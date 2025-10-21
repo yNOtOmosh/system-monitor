@@ -6,47 +6,64 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>System Monitor</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </head>
-<body class = "light">
+<body>
     <header>
-        <h1>System Monitor</h1>
-        <button id = "theme-toggle">🌙</button>
+        <h1>System Monitor Dashboard</h1>
+        <div class="theme-toggle">
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider"></span>
+            </label>
+            <span>Dark Mode</span>
+        </div>
     </header>
 
     <main>
-        <section id = "cpu">
-            <h2>CPU Usage</h2>
-            <canvas id = "cpuChart"></canvas>
+        <section id="system-stats">
+            <div class="card">
+                <h2>CPU Usage</h2>
+                <canvas id="cpuChart"></canvas>
+                <div class="stat" id="cpuValue">--%</div>
+            </div>
+
+            <div class="card">
+                <h2>Memory Usage</h2>
+                <canvas id="memChart"></canvas>
+                <div class="stat" id="memValue">--%</div>
+            </div>
+
+            <div class="card">
+                <h2>Disk Usage</h2>
+                <canvas id="diskChart"></canvas>>
+            </div>
         </section>
 
-        <section id = "memory">
-            <h2>Memory Usage</h2>
-            <canvas id = "memoryChart"></canvas>
-        </section>
-
-        <section id = "disks">
-            <h2>Disk Usage</h2>
-            <ul id = "diskList"></ul>
-        </section>
-
-        <section id = "processes">
+        <section id="processes">
             <h2>Top Processes</h2>
             <table>
                 <thead>
-                    <tr><th>PID</th><th>Name</th><th>CPU%</th><th>Memory</th></tr>
+                    <tr>
+                        <th>PID</th>
+                        <th>CPU</th>
+                        <th>Memory</th>
+                    </tr>
                 </thead>
-                <tbody id = "processTable"></tbody>
+                <tbody id="processTable">
+                    <tr>
+                        <td colspan="3">Waiting for data. . .</td>
+                    </tr>
+                </tbody>
             </table>
         </section>
     </main>
 
-    <script src = "charts.js"></script>
-    <script src = "app.js"></script>
+    <footer>
+        <p>REAL-TIME SYSTEM MONITOR; Powered by RUST + CHART.JS</p>
+    </footer>
 
+    <script src="charts.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
